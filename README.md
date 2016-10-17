@@ -7,7 +7,9 @@ Tutorial: https://kusemanohar.wordpress.com/2010/11/18/optical-character-recogni
 # Sugestão de Abordagem
 ##### Objetivo do projeto
 Software: biblioteca OpenCV (biblioteca OpenSource de Computer Vision)
+
 Input: Imagens de texto (paginas de livros fotografadas - Google Books)
+
 Output: Arquivo TXT com o conteudo de texto da imagem.
 
 ##### Como ele encontra as caracteristicas procuradas
@@ -15,6 +17,7 @@ Inicialmente, iremos tratar as imagens de forma que somente as propriedades esse
 - Caso a imagem seja colorida, converter ela para preto e branco. (0-255)
 - Realizar o processo de Thresholding, transformando-a em uma imagem de fato preto ou branco. (0 ou 1)
 - Extrair cada caractere em separado. Analise de conectividade?
+- Normalizacao
 
 Após tal tratamento, tentaremos os seguintes algoritmos (em ordem de complexidade):
 - Template matching
