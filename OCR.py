@@ -48,13 +48,23 @@ class OCR:
             imgCountor, contours, hierarchy = cv2.findContours(img_ready, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             #print(hierarchy)
             #cv2.waitKey(0)
-            # Drawing
+
+            # For each character in the image
             for i in range(0, len(contours)):
                 if hierarchy[0][i][3] == -1 and (len(contours[i]) > 20):
-                    cv2.drawContours(img_ready, contours, i, (255, 255, 255), -1)
+                    isolatedChar = np.zeros((img_ready.shape[0], img_ready.shape[1]), np.uint8)
+                    cv2.drawContours(isolatedChar, contours, i, (255, 255, 255), -1)
                     if hierarchy[0][i][2] != -1:
-                        cv2.drawContours(img_ready, contours, hierarchy[0][i][2], (0, 0, 0), -1)
-                    cv2.imshow('final', img_ready)
+                        cv2.drawContours(isolatedChar, contours, hierarchy[0][i][2], (0, 0, 0), -1)
+
+
+                    # Find what character the image represents
+                    ## -- TODO --
+
+                    # Write the result (first X, first Y)
+                    ## -- TODO --
+
+                    cv2.imshow('final', isolatedChar)
                     cv2.waitKey(0)
 
             # Extracting each character
