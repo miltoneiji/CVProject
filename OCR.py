@@ -46,12 +46,16 @@ class OCR:
 
             # Finding contours
             imgCountor, contours, hierarchy = cv2.findContours(img_ready, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
+            #print(hierarchy)
+            #cv2.waitKey(0)
             # Drawing
             for i in range(0, len(contours)):
-                cv2.drawContours(img_ready, contours, i, (255, 255, 255), 1)
-                cv2.imshow('final', img_ready)
-                cv2.waitKey(0)
+                if hierarchy[0][i][3] == -1 and (len(contours[i]) > 20):
+                    cv2.drawContours(img_ready, contours, i, (255, 255, 255), -1)
+                    if hierarchy[0][i][2] != -1:
+                        cv2.drawContours(img_ready, contours, hierarchy[0][i][2], (0, 0, 0), -1)
+                    cv2.imshow('final', img_ready)
+                    cv2.waitKey(0)
 
             # Extracting each character
 
